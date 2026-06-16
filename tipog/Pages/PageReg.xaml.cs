@@ -51,7 +51,8 @@ namespace tipog.Pages
                     password = pswPass.Password,
                     birtDay = dB.SelectedDate.Value,
                     phone = txtPhone.Text,
-                    email = txtEmail.Text
+                    email = txtEmail.Text,
+                    id_roles = 4
                 };
                 AppConnect.Model1.users.Add(userObj);
                 AppConnect.Model1.SaveChanges();
