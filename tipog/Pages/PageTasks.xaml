@@ -35,7 +35,7 @@
             <TextBox x:Name="TextSearch" TextWrapping="Wrap" VerticalAlignment="Center" Width="186" TextChanged="TextSearch_TextChanged" Height="26" Margin="5"/>
         </StackPanel>
 
-        <ListView x:Name="ListProducts" Margin="0,26,0,55" Grid.RowSpan="2">
+        <ListView x:Name="ListProducts" Margin="0,26,0,55" Grid.RowSpan="2" MouseDoubleClick="ListProducts_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border>
@@ -51,7 +51,7 @@
                                 Margin="3"
                                 ClipToBounds="True"
                                 Grid.Column="0">
-                                <Image Source="{Binding image}" Stretch="UniformToFill"/>
+                                <Image Source="{Binding imageProduct}" Stretch="UniformToFill"/>
                             </Border>
                             <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
                                 <TextBlock Height="auto" Text="{Binding name}"/>
@@ -75,8 +75,8 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="622,330,0,0" Grid.Row="1" VerticalAlignment="Top" Height="42" Width="151" Click="Button_Click" Background="#FFDAEBFF"/>
-        <Button Content="Избранное" HorizontalAlignment="Left" Margin="450,330,0,0" Grid.Row="1" VerticalAlignment="Top" Height="42" Width="151" Background="#FFDAEBFF"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="622,327,0,0" Grid.Row="1" VerticalAlignment="Top" Height="42" Width="151" Click="Button_Click" Background="#FFDAEBFF"/>
+        <Button Content="Избранное" HorizontalAlignment="Left" Margin="450,327,0,0" Grid.Row="1" VerticalAlignment="Top" Height="42" Width="151" Background="#FFDAEBFF"/>
         <TextBlock x:Name="tbCounter" HorizontalAlignment="Left" Margin="39,348,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="190"/>
     </Grid>
 </Page>
