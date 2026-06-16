@@ -10,14 +10,14 @@
 
     <Grid>
         <Image Source="/Images/загрузка.png" Stretch="Fill" Margin="0,0,-17,-8"/>
-        <Button x:Name="btnIogin" Content="Вход" HorizontalAlignment="Left" Margin="219,337,0,0" VerticalAlignment="Top" Height="40" Width="119" Click="Button_Click" Background="#FFDAEBFF"/>
-        <Button x:Name="btnRegister" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="359,337,0,0" VerticalAlignment="Top" Height="40" Width="119" Background="#FFDAEBFF" Click="btnRegister_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="158,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="112"><Run Language="ru-ru" Text="Введите логин:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="435,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="112"><Run Text="Введите "/><Run Language="ru-ru" Text="пароль"/><Run Text=":"/></TextBlock>
-        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Margin="158,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="431,264,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="208,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="76" Width="339" FontSize="20"><Run Text="Добро пожаловать в Типографию &quot;Мастер печати&quot;"/><Run Language="ru-ru" Text="!"/></TextBlock>
-        <Image Margin="628,268,-23,-21" Source="/Images/цветок-Photoroom.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="btnIogin" Content="Войти" HorizontalAlignment="Left" Margin="219,337,0,0" VerticalAlignment="Top" Height="40" Width="147" Click="Button_Click" Background="#FFDAEBFF"/>
+        <Button x:Name="btnRegister" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="388,337,0,0" VerticalAlignment="Top" Height="40" Width="147" Background="#FFDAEBFF" Click="btnRegister_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="158,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="153" FontSize="18"><Run Language="ru-ru" Text="Введите логин:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="435,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="148" FontSize="18"><Run Text="Введите "/><Run Language="ru-ru" Text="пароль"/><Run Text=":"/></TextBlock>
+        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Margin="158,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" TextChanged="TextBox_TextChanged" Height="28"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="431,264,0,0" VerticalAlignment="Top" Width="152" Height="28"/>
+        <TextBlock HorizontalAlignment="Left" Margin="192,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="82" Width="391" FontSize="24"><Run Text="Добро пожаловать в Типографию     &#x9;&quot;Мастер печати&quot;"/><Run Text="!"/></TextBlock>
+        <Image Margin="615,265,-22,-24" Source="/Images/цветок-Photoroom.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

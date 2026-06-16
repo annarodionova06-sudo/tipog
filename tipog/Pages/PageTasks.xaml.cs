@@ -116,7 +116,8 @@ namespace tipog.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageEdit(null));
+            products selectProduct = ListProducts.SelectedItem as products;
+            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageEdit(selectProduct));
         }
         private void ListProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -131,6 +132,29 @@ namespace tipog.Pages
             }
         }
 
-      
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonFavorite_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonCart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageLike());
+        }
     }
 }

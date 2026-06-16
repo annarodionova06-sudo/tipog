@@ -96,6 +96,9 @@
     <Compile Include="Pages\PageEdit.xaml.cs">
       <DependentUpon>PageEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PageLike.xaml.cs">
+      <DependentUpon>PageLike.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PageReg.xaml.cs">
       <DependentUpon>PageReg.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PageEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageLike.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,6 +216,7 @@
     <Resource Include="Images\загрузка.png" />
     <Resource Include="Images\цветок-Photoroom.png" />
     <Resource Include="Images\picture.jpg" />
+    <Resource Include="Images\визитка.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

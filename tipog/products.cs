@@ -40,6 +40,7 @@ namespace tipog
                 }
             }
         }
+
         public Nullable<int> count { get; set; }
     
         public virtual materials materials { get; set; }

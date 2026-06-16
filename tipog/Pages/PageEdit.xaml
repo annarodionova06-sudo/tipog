@@ -14,18 +14,19 @@
         <TextBox HorizontalAlignment="Left" Margin="346,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="21" TextChanged="TextBox_TextChanged" Text="{Binding name}"/>
         <TextBlock HorizontalAlignment="Left" Margin="584,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="ru-ru" Text="Количество"/><Run Text=":"/></TextBlock>
         <TextBox HorizontalAlignment="Left" Margin="584,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="21" TextChanged="TextBox_TextChanged" Text="{Binding count}"/>
-        <ComboBox HorizontalAlignment="Left" Margin="346,179,0,0" VerticalAlignment="Top" Width="162" Height="25" SelectedIndex="{Binding id_type_products}"/>
+        <ComboBox x:Name="cmbTypeProd" HorizontalAlignment="Left" Margin="346,179,0,0" VerticalAlignment="Top" Width="162" Height="25" SelectedIndex="{Binding id_type_products}"/>
         <TextBlock HorizontalAlignment="Left" Margin="346,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="ru-ru" Text="Тип продукции:"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="584,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="ru-ru" Text="Материал"/><Run Text=":"/></TextBlock>
-        <ComboBox HorizontalAlignment="Left" Margin="584,179,0,0" VerticalAlignment="Top" Width="162" Height="25" SelectedIndex="{Binding id_materials}"/>
+        <ComboBox x:Name="cmbMaterial" HorizontalAlignment="Left" Margin="584,179,0,0" VerticalAlignment="Top" Width="162" Height="25" SelectedIndex="{Binding id_materials}"/>
         <TextBlock HorizontalAlignment="Left" Margin="584,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="ru-ru" Text="Стоимость"/><Run Text=":"/></TextBlock>
         <TextBox HorizontalAlignment="Left" Margin="584,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="21" TextChanged="TextBox_TextChanged" Text="{Binding price}"/>
         <TextBlock HorizontalAlignment="Left" Margin="346,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="ru-ru" Text="Изображение"/><Run Text=":"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Margin="346,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="21" TextChanged="TextBox_TextChanged" Text="{Binding image}"/>
-        <Image HorizontalAlignment="Left" Height="243" Margin="46,82,0,0" VerticalAlignment="Top" Width="254"/>
-        <Button Content="Загрузить изображение" HorizontalAlignment="Left" Margin="346,298,0,0" VerticalAlignment="Top" Height="38" Width="143" Background="#FFDAEBFF"/>
-        <Button Content="Сохранить продукцию" HorizontalAlignment="Left" Margin="584,298,0,0" VerticalAlignment="Top" Height="38" Width="143" Background="#FFDAEBFF"/>
+        <TextBox x:Name="txtImagePath" HorizontalAlignment="Left" Margin="346,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="21" TextChanged="TextBox_TextChanged" Text="{Binding image}"/>
+        <Image x:Name="imgProduct" HorizontalAlignment="Left" Height="243" Margin="46,82,0,0" VerticalAlignment="Top" Width="254"/>
+        <Button Content="Загрузить изображение" HorizontalAlignment="Left" Margin="346,298,0,0" VerticalAlignment="Top" Height="38" Width="143" Background="#FFDAEBFF" Click="Button_Click_2"/>
+        <Button Content="Сохранить продукцию" HorizontalAlignment="Left" Margin="584,298,0,0" VerticalAlignment="Top" Height="38" Width="143" Background="#FFDAEBFF" Click="Button_Click_1"/>
         <Button Content="Удалить продукцию" HorizontalAlignment="Left" Margin="584,348,0,0" VerticalAlignment="Top" Height="38" Width="143" Background="#FFDAEBFF" Click="Button_Click"/>
-
+        <Image Margin="693,0,-11,340" Source="/Images/цветок-Photoroom.png" Stretch="Fill" RenderTransformOrigin="0.271,0.327"/>
+        <Button x:Name="btnA" Content="Назад" HorizontalAlignment="Left" Margin="346,348,0,0" VerticalAlignment="Top" Height="38" Width="143" Background="#FFDAEBFF" Click="btnA_Click"/>
     </Grid>
 </Page>
