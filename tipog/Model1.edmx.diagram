@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bbb5d62b4c3b44e5970535468c1c7de0" Name="Diagram1">
+        <EntityTypeShape EntityType="tipografModel.clients" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.employees" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.equipments" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.materials" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.order_status" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.order_structures" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.orders" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.products" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.providers" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.rejects" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.reviews" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.roles" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.supplies_materials" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.type_products" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tipografModel.users" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="tipografModel.FK_orders_clients" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_orders_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_equipments_rejects" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_products_materials" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_supplies_materials_materials" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_orders_order_status" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_order_structures_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_order_structures_products" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_rejects_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_reviews_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_products_type_products" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_rejects_products" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_supplies_materials_providers" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_users_roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
