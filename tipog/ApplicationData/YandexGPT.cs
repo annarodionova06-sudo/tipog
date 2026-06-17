@@ -24,8 +24,7 @@ namespace tipog.ApplicationData
         // 2️⃣ ВСТАВЬ СВОЙ API-КЛЮЧ (из сервисного аккаунта)
         public static string ApiKey { get; set; } = "AQVN3GfraqlULm6z8mpFvEXwqPzn490084SVidgQ";
 
-        // ==========================================
-        // 🎭 Системный промпт - помощник типографии
+
         private static string SystemPrompt =
             "Ты — помощник типографии по печати сувенирной продукции. " +
             "Отвечай на русском, коротко, по делу. " +
