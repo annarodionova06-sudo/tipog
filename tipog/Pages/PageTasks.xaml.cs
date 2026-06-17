@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using tipog.AppDate;
+using tipog.ApplicationData;
 
 namespace tipog.Pages
 {
@@ -25,6 +26,7 @@ namespace tipog.Pages
         {
             InitializeComponent();
 
+            // Заполняем ComboBox фильтра
             ComboFilter.Items.Add("Все типы");
             var types = AppConnect.Model1.type_products.ToList();
             foreach (var type in types)
@@ -39,28 +41,46 @@ namespace tipog.Pages
             ComboSort.Items.Add("Цена: по убыванию");
             ComboSort.SelectedIndex = 0;
 
-            // Загружаем продукцию
+            // Загружаем продукцию и обновляем счетчик
             FindProduct();
-
-            ListProducts.ItemsSource = AppConnect.Model1.products.ToList();
-            List<products> products = AppConnect.Model1.products.ToList();
-            if (products.Count > 0)
-            {
-                tbCounter.Text = "Найдено " + products.Count + " продукции";
-            }
-            else
-            {
-                tbCounter.Text = "Не найдено";
-            }
-            ListProducts.ItemsSource = products;
+            UpdateCartCount();
         }
+
+        // Метод обновления счетчика корзины
+        private void UpdateCartCount()
+        {
+            try
+            {
+                // Считаем общее количество товаров в корзине
+                var cartCount = AppConnect.Model1.orders
+                    .Where(c => c.id_user == 1)  // TODO: заменить на AppConnect.id_user
+                    .Sum(c => (int?)c.quantity) ?? 0;
+
+                // Обновляем ToolTip
+                if (cartCount > 0)
+                {
+                    ttCartCount.Content = $"{cartCount} товаров в корзине";
+                    btnOrder.ToolTip = ttCartCount;
+                }
+                else
+                {
+                    ttCartCount.Content = "Корзина пуста";
+                    btnOrder.ToolTip = ttCartCount;
+                }
+            }
+            catch
+            {
+                ttCartCount.Content = "Ошибка подсчета";
+            }
+        }
+
         private products[] FindProduct()
         {
             var product = AppConnect.Model1.products.ToList();
             var productall = product;
 
             // Поиск по названию
-            if (TextSearch != null && !string.IsNullOrEmpty(TextSearch.Text))
+            if (!string.IsNullOrWhiteSpace(TextSearch.Text))
             {
                 product = product.Where(x => x.name.ToLower().Contains(TextSearch.Text.ToLower())).ToList();
             }
@@ -86,9 +106,10 @@ namespace tipog.Pages
                 }
             }
 
+            // Обновляем счетчик
             if (product.Count > 0)
             {
-                tbCounter.Text = "Найдено " + product.Count + " из " + productall.Count + " продукции";
+                tbCounter.Text = "Найдено " + product.Count + " из " + productall.Count;
             }
             else
             {
@@ -114,31 +135,32 @@ namespace tipog.Pages
             FindProduct();
         }
 
+        // Кнопка ДОБАВИТЬ (новая продукция)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            products selectProduct = ListProducts.SelectedItem as products;
-            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageEdit(selectProduct));
+            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageEdit(null));
         }
-        private void ListProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        // Кнопка КОРЗИНА (переход на страницу корзины)
+        private void ButtonCartPage_Click(object sender, RoutedEventArgs e)
         {
-            if (ListProducts.SelectedItems is products selectedProducts)
-            {
-                NavigationService.Navigate(new PageEdit(selectedProducts));
-                ListProducts.Items.Refresh();
-            }
-            else
-            {
-                MessageBox.Show("Выделите продукцию!");
-            }
+            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageOrder());
         }
 
-        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        // Кнопка СЕРДЕЧКО (добавить в избранное)
+        private void ButtonFavorite_Click(object sender, RoutedEventArgs e)
         {
+            var button = sender as Button;
+            var selectedProduct = button.Tag as products;
 
+            if (selectedProduct != null)
+            {
+                MessageBox.Show($"\"{selectedProduct.name}\" добавлено в избранное!");
+                // TODO: Добавить в таблицу favorites
+            }
         }
 
-        
-
+        // Кнопка КОРЗИНА у товара (добавить в корзину)
         private void ButtonCart_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -146,38 +168,57 @@ namespace tipog.Pages
 
             if (selectedProduct != null)
             {
-                //Проверяем, есть ли уже в корзине
-               var existingCart = AppConnect.Model1.orders
-                   .FirstOrDefault(c => c.id_product == selectedProduct.id_product && c.id_user == 1);
+                // Проверяем, есть ли уже в корзине
+                var existingCart = AppConnect.Model1.orders
+                    .FirstOrDefault(c => c.id_product == selectedProduct.id_product && c.id_user == 1);
 
                 if (existingCart != null)
                 {
-                    // Увеличиваем количество
                     existingCart.quantity += 1;
-                    MessageBox.Show($"Количество \"{selectedProduct.name}\" в корзине увеличено!", "Корзина",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(
+                        $"✅ \"{selectedProduct.name}\"\n\nКоличество в корзине: {existingCart.quantity}",
+                        "Добавлено в корзину",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
                 }
                 else
                 {
-                    // Добавляем в корзину
                     var cartItem = new orders
                     {
                         id_product = selectedProduct.id_product,
-                        id_user = 1, 
+                        id_user = 1,
                         quantity = 1,
-                        order_date = DateTime.Now
+                        price = selectedProduct.price
                     };
 
                     AppConnect.Model1.orders.Add(cartItem);
-                    MessageBox.Show($"\"{selectedProduct.name}\" добавлено в корзину!", "Корзина",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(
+                        $"✅ \"{selectedProduct.name}\"\n\nТовар добавлен в корзину!",
+                        "Добавлено",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
                 }
 
                 AppConnect.Model1.SaveChanges();
+
+                // Обновляем счетчик!
+                UpdateCartCount();
             }
         }
 
-        private void ListProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ListProducts.SelectedItem is products selectedProduct)
+            {
+                AppDate.AppFrame.FrameMain.Navigate(new PageEdit(selectedProduct));
+            }
+            else
+            {
+                MessageBox.Show("Выделите продукцию!");
+            }
+        }
+
+        private void ListProducts_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }
@@ -186,11 +227,11 @@ namespace tipog.Pages
         {
             AppDate.AppFrame.FrameMain.Navigate(new Pages.PageOrder());
         }
+        
 
-        private void ListProducts_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void ButtonHelper_Click(object sender, RoutedEventArgs e)
         {
-
+            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageGPT());
         }
-
     }
 }

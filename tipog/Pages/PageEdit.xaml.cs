@@ -33,6 +33,7 @@ namespace tipog.Pages
                 product = product1;
             }
             DataContext = product;
+
         }
         public void Fill()
         {

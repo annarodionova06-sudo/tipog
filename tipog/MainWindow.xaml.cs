@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using tipog.AppDate;
 
 namespace tipog
 {
@@ -26,6 +27,8 @@ namespace tipog
             AppDate.AppConnect.Model1 = new tipografEntities2();
             AppDate.AppFrame.FrameMain = FrameName1;
             FrameName1.Navigate(new Pages.PageAvtoris());
+
+            _ = AppDate.AppConnect.InitYandexGPTAsync();
         }
     }
 }

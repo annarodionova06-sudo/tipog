@@ -498,7 +498,7 @@
           <Property Name="id_orders" Type="Int32" />
           <Property Name="id_products" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
-          <Property Name="price" Type="Decimal" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="orders" Relationship="Self.FK_order_structures_orders" FromRole="order_structures" ToRole="orders" />
           <NavigationProperty Name="products" Relationship="Self.FK_order_structures_products" FromRole="order_structures" ToRole="products" />
         </EntityType>

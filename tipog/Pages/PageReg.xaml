@@ -9,8 +9,8 @@
       Title="PageReg">
 
     <Grid>
-        <Image Margin="0,0,-19,0" Source="/Images/загрузка.png" Stretch="Fill"/>
-        <TextBlock HorizontalAlignment="Left" Margin="174,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="61" Width="512" FontSize="22"><Run Text="Регистрация"/><Run Text=" "/><Run Text="в Типографию &quot;Мастер печати&quot;"/></TextBlock>
+        <Image Margin="0,-2,-20,-23" Source="/Images/загрузка.png" Stretch="Fill"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="61" FontSize="22"><Run Text="Регистрация"/><Run Text=" "/><Run Text="в Типографию &quot;Мастер печати&quot;"/></TextBlock>
         <Image Margin="643,302,2,-12" Source="/Images/цветок-Photoroom.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
@@ -21,22 +21,116 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <TextBlock HorizontalAlignment="Left" Margin="50,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="178" FontSize="20"><Run Language="ru-ru" Text="Введите имя:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="50,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="178" FontSize="20"><Run Text="Введите"/><Run Language="ru-ru" Text=" логин"/><Run Text=":"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="50,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="178" FontSize="20"><Run Text="Введите "/><Run Language="ru-ru" Text="пароль"/><Run Text=":"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="50,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="256" FontSize="20"><Run Text="Введите "/><Run Text="пароль"/><Run Language="ru-ru" Text=" повторно"/><Run Text=":"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="328,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="238" FontSize="20"><Run Text="Введите "/><Run Language="ru-ru" Text="дату рождения"/><Run Text=":"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="328,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="238" FontSize="20"><Run Text="Введите"/><Run Language="ru-ru" Text=" почту:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="330,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="238" FontSize="20"><Run Text="Введите"/><Run Text=" "/><Run Language="ru-ru" Text="телефон"/><Run Text=":"/></TextBlock>
-        <Button x:Name="btnReg" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="589,171,0,0" VerticalAlignment="Top" Height="44" Width="151" Background="#FFDAEBFF" Click="btnReg_Click"/>
-        <Button x:Name="btnAgo" Content="Назад" HorizontalAlignment="Left" Margin="589,248,0,0" VerticalAlignment="Top" Height="44" Width="151" Background="#FFDAEBFF" Click="btnAgo_Click"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="50,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30"/>
-        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Margin="50,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="330,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30"/>
-        <DatePicker x:Name="dB" HorizontalAlignment="Left" Margin="330,155,0,0" VerticalAlignment="Top" Height="38" Width="160" RenderTransformOrigin="2.435,-3.408"/>
-        <PasswordBox x:Name="pswPass" HorizontalAlignment="Left" Margin="50,311,0,0" VerticalAlignment="Top" Width="160" Height="30"/>
-        <PasswordBox x:Name="pswPass1" HorizontalAlignment="Left" Margin="50,385,0,0" VerticalAlignment="Top" Width="160" Height="30" PasswordChanged="pswPass1_PasswordChanged"/>
-        <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Margin="330,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="178" FontSize="20"><Run Language="ru-ru" Text="Введите имя:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="50,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="178" FontSize="20"><Run Text="Введите"/><Run Language="ru-ru" Text=" логин"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="50,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="178" FontSize="20"><Run Text="Введите "/><Run Language="ru-ru" Text="пароль"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="50,311,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="256" FontSize="20"><Run Text="Введите "/><Run Text="пароль"/><Run Language="ru-ru" Text=" повторно"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="328,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="238" FontSize="20"><Run Text="Введите "/><Run Language="ru-ru" Text="дату рождения"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="328,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="238" FontSize="20"><Run Text="Введите"/><Run Language="ru-ru" Text=" почту:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="330,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="238" FontSize="20"><Run Text="Введите"/><Run Text=" "/><Run Language="ru-ru" Text="телефон"/><Run Text=":"/></TextBlock>
+
+        <!-- Кнопка Зарегистрироваться с закруглением -->
+        <Button x:Name="btnReg" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="550,165,0,0" VerticalAlignment="Top" Height="44" Width="180" Background="#FF90EE90" Click="btnReg_Click" Cursor="Hand" FontSize="14" BorderBrush="#FF228B22" BorderThickness="2">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF228B22"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Кнопка Назад с закруглением -->
+        <Button x:Name="btnAgo" Content="Назад" HorizontalAlignment="Left" Margin="550,225,0,0" VerticalAlignment="Top" Height="44" Width="151" Background="#FFDAEBFF" Click="btnAgo_Click" Cursor="Hand" FontSize="14" BorderBrush="#FF5B9BD5" BorderThickness="2">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF5B9BD5"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- TextBox с закруглением -->
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="50,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" BorderBrush="#FF5B9BD5" BorderThickness="1.5">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Margin="50,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" BorderBrush="#FF5B9BD5" BorderThickness="1.5">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="330,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" BorderBrush="#FF5B9BD5" BorderThickness="1.5">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <DatePicker x:Name="dB" HorizontalAlignment="Left" Margin="330,130,0,0" VerticalAlignment="Top" Height="38" Width="160" BorderBrush="#FF5B9BD5" BorderThickness="1.5">
+            <DatePicker.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+        <PasswordBox x:Name="pswPass" HorizontalAlignment="Left" Margin="50,267,0,0" VerticalAlignment="Top" Width="160" Height="30" BorderBrush="#FF5B9BD5" BorderThickness="1.5">
+            <PasswordBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </PasswordBox.Resources>
+        </PasswordBox>
+        <PasswordBox x:Name="pswPass1" HorizontalAlignment="Left" Margin="50,346,0,0" VerticalAlignment="Top" Width="160" Height="30" PasswordChanged="pswPass1_PasswordChanged" BorderBrush="#FF5B9BD5" BorderThickness="1.5">
+            <PasswordBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </PasswordBox.Resources>
+        </PasswordBox>
+        <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Margin="330,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="30" BorderBrush="#FF5B9BD5" BorderThickness="1.5">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
 
     </Grid>
 </Page>

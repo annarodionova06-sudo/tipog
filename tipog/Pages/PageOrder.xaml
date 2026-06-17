@@ -10,54 +10,64 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Фон -->
-        <Image Margin="0,-19,-142,-11" Grid.RowSpan="3" Source="/Images/загрузка.png" Stretch="Fill"/>
+        <Image Grid.RowSpan="3" Source="/Images/загрузка.png" Stretch="Fill"/>
 
         <!-- Заголовок -->
-        <TextBlock Text="Корзина" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   FontSize="22"
-                   Grid.Row="0"/>
+        <Border Grid.Row="0" Background="#FF5B9BD5" Padding="15" Margin="10">
+            <TextBlock Text="🛒 Корзина" 
+                       Foreground="White" 
+                       FontSize="24"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+        </Border>
 
         <!-- Список корзины -->
-        <ListView x:Name="ListCart" Margin="26,7,-26,50" Grid.Row="1">
+        <ListView x:Name="ListCart" Grid.Row="1" Margin="10" BorderThickness="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="#FFDAEBFF" BorderThickness="1" Margin="5" Padding="10">
+                    <Border BorderBrush="#FFDAEBFF" BorderThickness="1" Margin="5" Padding="15" Background="White" CornerRadius="5">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="400"/>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="250"/>
                             </Grid.ColumnDefinitions>
 
                             <!-- Изображение -->
-                            <Border Width="150" Height="150" Margin="3" ClipToBounds="True" Grid.Column="0">
-                                <Image Source="{Binding products.imageProduct}" Stretch="UniformToFill"/>
+                            <Border Grid.Column="0" Width="150" Height="150" Margin="10" ClipToBounds="True" CornerRadius="5" Background="#FFF5F5F5">
+                                <Image Source="{Binding products.CurrentPhoto, TargetNullValue='/Images/загрузка.png'}" Stretch="UniformToFill"/>
                             </Border>
 
                             <!-- Информация о продукте -->
-                            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding products.name}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Margin="0,5,0,0">
-                            <Run Text="Цена: "/>
-                            <Run Text="{Binding products.price}"/>
-                            <Run Text=" руб."/>
+                            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" Margin="15,0">
+                                <TextBlock Text="{Binding products.name}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                                <TextBlock Margin="0,3">
+                                    <Run Text="Тип продукции: " FontWeight="SemiBold"/>
+                                    <Run Text="{Binding products.type_products.name}"/>
+                                </TextBlock>
+                                <TextBlock Margin="0,3">
+                                    <Run Text="Цена: " FontWeight="SemiBold"/>
+                                    <Run Text="{Binding products.price}"/>
+                                    <Run Text=" руб."/>
+                                </TextBlock>
+                                <TextBlock Margin="0,3">
+                                    <Run Text="Материал: " FontWeight="SemiBold"/>
+                                    <Run Text="{Binding products.materials.name}"/>
                                 </TextBlock>
                             </StackPanel>
 
                             <!-- Кнопки управления -->
-                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                                <Button Content="-" Width="30" Height="30" Background="#FFDAEBFF" Click="ButtonMinus_Click" Tag="{Binding}"/>
-                                <TextBlock Text="{Binding quantity}" Width="30" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="5,0"/>
-                                <Button Content="+" Width="30" Height="30" Background="#FFDAEBFF" Click="ButtonPlus_Click" Tag="{Binding}"/>
-                                <Button Content="Удалить" Width="80" Height="30" Background="#FFFFB6C1" Margin="10,0,0,0" Click="ButtonDelete_Click" Tag="{Binding}"/>
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button Content="➖" Width="35" Height="35" Background="#FFDAEBFF" BorderThickness="0" FontSize="16" Click="ButtonMinus_Click" Tag="{Binding}" Margin="0,0,5,0" Cursor="Hand"/>
+                                <TextBlock Text="{Binding quantity}" Width="40" TextAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="5,0"/>
+                                <Button Content="➕" Width="35" Height="35" Background="#FFDAEBFF" BorderThickness="0" FontSize="16" Click="ButtonPlus_Click" Tag="{Binding}" Margin="5,0,5,0" Cursor="Hand"/>
+                                <Button Content="🗑️ Удалить" Width="90" Height="35" Background="#FFFFB6C1" BorderThickness="0" Margin="10,0,0,0" Click="ButtonDelete_Click" Tag="{Binding}" Cursor="Hand"/>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -66,38 +76,59 @@
         </ListView>
 
         <!-- Нижняя панель -->
-        <TextBlock x:Name="tbTotal" 
-                   HorizontalAlignment="Left" 
-                   Margin="50,334,0,0" 
-                   Grid.Row="1" 
-                   TextWrapping="Wrap" 
-                   VerticalAlignment="Top" 
-                   Height="34" 
-                   Width="250"
-                   FontSize="16"
-                   FontWeight="Bold"/>
+        <Border Grid.Row="2" Background="#FFF5F5F5" Padding="20" BorderBrush="#FFDAEBFF" BorderThickness="0,1,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
 
-        <Button Content="Оформить заказ" 
-                HorizontalAlignment="Left" 
-                Margin="350,321,0,0" 
-                Grid.Row="1" 
-                VerticalAlignment="Top" 
-                Height="42" 
-                Width="151" 
-                Background="#FF90EE90"
-                Click="ButtonOrder_Click"/>
+                <TextBlock x:Name="tbTotal" 
+                           Grid.Column="0"
+                           Text="Итого: 0.00 руб." 
+                           FontSize="20"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Foreground="Black"/>
 
-        <Button Content="Назад" 
-                HorizontalAlignment="Left" 
-                Margin="520,321,0,0" 
-                Grid.Row="1" 
-                VerticalAlignment="Top" 
-                Height="42" 
-                Width="151" 
-                Background="#FFDAEBFF"
-                Click="ButtonBack_Click"/>
-        <Button Content="Скачать чек"
-        Background="#FF90EE90"
-        Click="ButtonPrintReceipt_Click" Margin="184,322,465,35" Grid.Row="1"/>
+                <Button Grid.Column="1"
+                        Content="📄 Скачать чек" 
+                        Height="45" 
+                        Margin="5"
+                        Background="#FF90EE90"
+                        Foreground="Black"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        BorderThickness="0"
+                        Click="ButtonPrintReceipt_Click"
+                        Cursor="Hand"/>
+
+                <Button Grid.Column="2"
+                        Content="✅ Оформить заказ" 
+                        Height="45" 
+                        Margin="5"
+                        Background="#FF90EE90"
+                        Foreground="Black"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        BorderThickness="0"
+                        Click="ButtonOrder_Click"
+                        Cursor="Hand"/>
+
+                <Button Grid.Column="3"
+                        Content="⬅️ Назад" 
+                        Height="45" 
+                        Margin="5"
+                        Background="#FFDAEBFF"
+                        Foreground="Black"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        BorderThickness="0"
+                        Click="ButtonBack_Click"
+                        Cursor="Hand"/>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

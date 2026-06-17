@@ -38,16 +38,21 @@ namespace tipog.Pages
                 }
                 else
                 {
-                    MessageBox.Show("Здравствуйте, " + userObj.name, "Уведомление",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                    var role = AppDate.AppConnect.Model1.roles.FirstOrDefault(r => r.id_role == userObj.id_roles);
+                    string roleName = role != null ? role.name : "Неизвестная роль";
+
+                    string message = "Здравствуйте, " + userObj.name + "!\n\n" +
+                             "Ваша роль: " + roleName;
+
+                    MessageBox.Show(message, "Уведомление",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    AppDate.AppFrame.FrameMain.Navigate(new Pages.PageTasks());
                 }
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка" + ex.Message.ToString(), "Критическая ошибка приложения", MessageBoxButton.OK);
             }
-            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageTasks());
         }
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {

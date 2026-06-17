@@ -10,12 +10,91 @@
 
     <Grid>
         <Image Source="/Images/загрузка.png" Stretch="Fill" Margin="0,0,-17,-8"/>
-        <Button x:Name="btnIogin" Content="Войти" HorizontalAlignment="Left" Margin="219,337,0,0" VerticalAlignment="Top" Height="40" Width="147" Click="Button_Click" Background="#FFDAEBFF"/>
-        <Button x:Name="btnRegister" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="388,337,0,0" VerticalAlignment="Top" Height="40" Width="147" Background="#FFDAEBFF" Click="btnRegister_Click"/>
+
+        <!-- Кнопка Войти -->
+        <Button x:Name="btnIogin" 
+                Content="Войти" 
+                HorizontalAlignment="Left" 
+                Margin="219,337,0,0" 
+                VerticalAlignment="Top" 
+                Height="40" 
+                Width="147" 
+                Click="Button_Click"
+                Background="#FFDAEBFF"
+                Foreground="Black"
+                FontSize="14"
+                FontWeight="SemiBold"
+                BorderBrush="#FF5B9BD5"
+                BorderThickness="1"
+                Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF5B9BD5"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Кнопка Зарегистрироваться -->
+        <Button x:Name="btnRegister" 
+                Content="Зарегистрироваться" 
+                HorizontalAlignment="Left" 
+                Margin="388,337,0,0" 
+                VerticalAlignment="Top" 
+                Height="40" 
+                Width="147" 
+                Background="#FFDAEBFF"
+                Foreground="Black"
+                FontSize="14"
+                FontWeight="SemiBold"
+                BorderBrush="#FF5B9BD5"
+                BorderThickness="1"
+                Click="btnRegister_Click"
+                Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF5B9BD5"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
         <TextBlock HorizontalAlignment="Left" Margin="158,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="153" FontSize="18"><Run Language="ru-ru" Text="Введите логин:"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="435,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="148" FontSize="18"><Run Text="Введите "/><Run Language="ru-ru" Text="пароль"/><Run Text=":"/></TextBlock>
-        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Margin="158,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" TextChanged="TextBox_TextChanged" Height="28"/>
-        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="431,264,0,0" VerticalAlignment="Top" Width="152" Height="28"/>
+        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Margin="158,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" TextChanged="TextBox_TextChanged" Height="28" BorderBrush="#FF5B9BD5" BorderThickness="1" Padding="5"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="431,264,0,0" VerticalAlignment="Top" Width="152" Height="28" BorderBrush="#FF5B9BD5" BorderThickness="1" Padding="5"/>
         <TextBlock HorizontalAlignment="Left" Margin="192,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="82" Width="391" FontSize="24"><Run Text="Добро пожаловать в Типографию     &#x9;&quot;Мастер печати&quot;"/><Run Text="!"/></TextBlock>
         <Image Margin="615,265,-22,-24" Source="/Images/цветок-Photoroom.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>

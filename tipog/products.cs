@@ -27,6 +27,20 @@ namespace tipog
         public Nullable<decimal> price { get; set; }
         public Nullable<int> id_materials { get; set; }
         public string image { get; set; }
+        public string imageProduct
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(image) || String.IsNullOrWhiteSpace(image))
+                {
+                    return "/Images/picture.jpg";
+                }
+                else
+                {
+                    return "/Images/" + image;
+                }
+            }
+        }
         public Nullable<int> count { get; set; }
     
         public virtual materials materials { get; set; }
