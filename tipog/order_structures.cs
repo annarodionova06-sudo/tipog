@@ -17,8 +17,8 @@ namespace tipog
         public int id_order_structure { get; set; }
         public Nullable<int> id_orders { get; set; }
         public Nullable<int> id_products { get; set; }
-        public string quantity { get; set; }
-        public string price { get; set; }
+        public Nullable<int> quantity { get; set; }
+        public Nullable<decimal> price { get; set; }
     
         public virtual orders orders { get; set; }
         public virtual products products { get; set; }

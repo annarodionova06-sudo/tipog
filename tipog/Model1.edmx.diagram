@@ -35,6 +35,8 @@
         <AssociationConnector Association="tipografModel.FK_rejects_products" ManuallyRouted="false" />
         <AssociationConnector Association="tipografModel.FK_supplies_materials_providers" ManuallyRouted="false" />
         <AssociationConnector Association="tipografModel.FK_users_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="tipografModel.FK_orders_products" />
+        <AssociationConnector Association="tipografModel.FK_orders_users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -137,14 +137,44 @@ namespace tipog.Pages
 
         }
 
-        private void ButtonFavorite_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void ButtonCart_Click(object sender, RoutedEventArgs e)
         {
+            var button = sender as Button;
+            var selectedProduct = button.Tag as products;
 
+            if (selectedProduct != null)
+            {
+                //Проверяем, есть ли уже в корзине
+               var existingCart = AppConnect.Model1.orders
+                   .FirstOrDefault(c => c.id_product == selectedProduct.id_product && c.id_user == 1);
+
+                if (existingCart != null)
+                {
+                    // Увеличиваем количество
+                    existingCart.quantity += 1;
+                    MessageBox.Show($"Количество \"{selectedProduct.name}\" в корзине увеличено!", "Корзина",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    // Добавляем в корзину
+                    var cartItem = new orders
+                    {
+                        id_product = selectedProduct.id_product,
+                        id_user = 1, 
+                        quantity = 1,
+                        order_date = DateTime.Now
+                    };
+
+                    AppConnect.Model1.orders.Add(cartItem);
+                    MessageBox.Show($"\"{selectedProduct.name}\" добавлено в корзину!", "Корзина",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+
+                AppConnect.Model1.SaveChanges();
+            }
         }
 
         private void ListProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -154,7 +184,13 @@ namespace tipog.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageLike());
+            AppDate.AppFrame.FrameMain.Navigate(new Pages.PageOrder());
         }
+
+        private void ListProducts_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
     }
 }

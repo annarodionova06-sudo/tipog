@@ -55,8 +55,8 @@
           <Property Name="id_order_structure" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_orders" Type="int" />
           <Property Name="id_products" Type="int" />
-          <Property Name="quantity" Type="nvarchar" MaxLength="50" />
-          <Property Name="price" Type="nvarchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -69,6 +69,10 @@
           <Property Name="order_date" Type="date" />
           <Property Name="count" Type="nvarchar" MaxLength="50" />
           <Property Name="id_employees" Type="int" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="id_product" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="products">
           <Key>
@@ -77,7 +81,7 @@
           <Property Name="id_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="id_type_products" Type="int" />
-          <Property Name="price" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="id_materials" Type="int" />
           <Property Name="image" Type="nvarchar" MaxLength="50" />
           <Property Name="count" Type="int" />
@@ -231,6 +235,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_orders_products">
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_products_materials">
           <End Role="materials" Type="Self.materials" Multiplicity="0..1" />
           <End Role="products" Type="Self.products" Multiplicity="*" />
@@ -368,6 +396,14 @@
             <End Role="order_status" EntitySet="order_status" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
+          <AssociationSet Name="FK_orders_products" Association="Self.FK_orders_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_users" Association="Self.FK_orders_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_products_materials" Association="Self.FK_products_materials">
             <End Role="materials" EntitySet="materials" />
             <End Role="products" EntitySet="products" />
@@ -461,8 +497,8 @@
           <Property Name="id_order_structure" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_orders" Type="Int32" />
           <Property Name="id_products" Type="Int32" />
-          <Property Name="quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="price" Type="Decimal" />
           <NavigationProperty Name="orders" Relationship="Self.FK_order_structures_orders" FromRole="order_structures" ToRole="orders" />
           <NavigationProperty Name="products" Relationship="Self.FK_order_structures_products" FromRole="order_structures" ToRole="products" />
         </EntityType>
@@ -483,6 +519,12 @@
           <NavigationProperty Name="order_structures" Relationship="Self.FK_order_structures_orders" FromRole="orders" ToRole="order_structures" />
           <NavigationProperty Name="rejects" Relationship="Self.FK_rejects_orders" FromRole="orders" ToRole="rejects" />
           <NavigationProperty Name="reviews" Relationship="Self.FK_reviews_orders" FromRole="orders" ToRole="reviews" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="id_product" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="products" Relationship="tipografModel.FK_orders_products" FromRole="orders" ToRole="products" />
+          <NavigationProperty Name="users" Relationship="tipografModel.FK_orders_users" FromRole="orders" ToRole="users" />
         </EntityType>
         <EntityType Name="products">
           <Key>
@@ -491,7 +533,7 @@
           <Property Name="id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="id_type_products" Type="Int32" />
-          <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="id_materials" Type="Int32" />
           <NavigationProperty Name="materials" Relationship="Self.FK_products_materials" FromRole="products" ToRole="materials" />
           <NavigationProperty Name="order_structures" Relationship="Self.FK_order_structures_products" FromRole="products" ToRole="order_structures" />
@@ -499,6 +541,7 @@
           <NavigationProperty Name="rejects" Relationship="Self.FK_rejects_products" FromRole="products" ToRole="rejects" />
           <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="count" Type="Int32" />
+          <NavigationProperty Name="orders" Relationship="tipografModel.FK_orders_products" FromRole="products" ToRole="orders" />
         </EntityType>
         <EntityType Name="providers">
           <Key>
@@ -586,6 +629,7 @@
           <Property Name="birtDay" Type="DateTime" Precision="0" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="orders" Relationship="tipografModel.FK_orders_users" FromRole="users" ToRole="orders" />
         </EntityType>
         <Association Name="FK_orders_clients">
           <End Role="clients" Type="Self.clients" Multiplicity="0..1" />
@@ -828,7 +872,39 @@
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
+          <AssociationSet Name="FK_orders_products" Association="tipografModel.FK_orders_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_users" Association="tipografModel.FK_orders_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_orders_products">
+          <End Type="tipografModel.products" Role="products" Multiplicity="0..1" />
+          <End Type="tipografModel.orders" Role="orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_users">
+          <End Type="tipografModel.users" Role="users" Multiplicity="0..1" />
+          <End Type="tipografModel.orders" Role="orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -897,6 +973,10 @@
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="tipografModel.orders">
               <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
                 <ScalarProperty Name="id_order" ColumnName="id_order" />
                 <ScalarProperty Name="order_number" ColumnName="order_number" />
                 <ScalarProperty Name="id_order_status" ColumnName="id_order_status" />

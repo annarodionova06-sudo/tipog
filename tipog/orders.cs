@@ -28,6 +28,10 @@ namespace tipog
         public Nullable<System.DateTime> order_date { get; set; }
         public string count { get; set; }
         public Nullable<int> id_employees { get; set; }
+        public Nullable<int> id_user { get; set; }
+        public Nullable<int> id_product { get; set; }
+        public Nullable<int> quantity { get; set; }
+        public Nullable<decimal> price { get; set; }
     
         public virtual clients clients { get; set; }
         public virtual employees employees { get; set; }
@@ -35,5 +39,7 @@ namespace tipog
         public virtual ICollection<order_structures> order_structures { get; set; }
         public virtual ICollection<rejects> rejects { get; set; }
         public virtual ICollection<reviews> reviews { get; set; }
+        public virtual products products { get; set; }
+        public virtual users users { get; set; }
     }
 }

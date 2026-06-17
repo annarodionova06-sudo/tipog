@@ -14,6 +14,11 @@ namespace tipog
     
     public partial class users
     {
+        public users()
+        {
+            this.orders = new HashSet<orders>();
+        }
+    
         public int id_user { get; set; }
         public string login { get; set; }
         public string password { get; set; }
@@ -24,5 +29,6 @@ namespace tipog
         public string phone { get; set; }
     
         public virtual roles roles { get; set; }
+        public virtual ICollection<orders> orders { get; set; }
     }
 }

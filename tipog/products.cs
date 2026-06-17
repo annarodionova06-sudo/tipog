@@ -18,34 +18,21 @@ namespace tipog
         {
             this.order_structures = new HashSet<order_structures>();
             this.rejects = new HashSet<rejects>();
+            this.orders = new HashSet<orders>();
         }
     
         public int id_product { get; set; }
         public string name { get; set; }
         public Nullable<int> id_type_products { get; set; }
-        public string price { get; set; }
+        public Nullable<decimal> price { get; set; }
         public Nullable<int> id_materials { get; set; }
         public string image { get; set; }
-        public string imageProduct
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(image) || String.IsNullOrWhiteSpace(image))
-                {
-                    return "/Images/picture.jpg";
-                }
-                else
-                {
-                    return "/Images/" + image;
-                }
-            }
-        }
-
         public Nullable<int> count { get; set; }
     
         public virtual materials materials { get; set; }
         public virtual ICollection<order_structures> order_structures { get; set; }
         public virtual type_products type_products { get; set; }
         public virtual ICollection<rejects> rejects { get; set; }
+        public virtual ICollection<orders> orders { get; set; }
     }
 }
