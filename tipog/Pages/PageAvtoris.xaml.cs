@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using tipog.AppDate;
 
 namespace tipog.Pages
 {
@@ -40,7 +41,7 @@ namespace tipog.Pages
                 {
                     var role = AppDate.AppConnect.Model1.roles.FirstOrDefault(r => r.id_role == userObj.id_roles);
                     string roleName = role != null ? role.name : "Неизвестная роль";
-
+                    AppConnect.id_user = userObj.id_user;
                     string message = "Здравствуйте, " + userObj.name + "!\n\n" +
                              "Ваша роль: " + roleName;
 

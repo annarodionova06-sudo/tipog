@@ -43,57 +43,73 @@
         <ListView x:Name="ListProducts" Margin="0,26,0,55" Grid.RowSpan="2" MouseDoubleClick="ListProducts_MouseDoubleClick" SelectionChanged="ListProducts_SelectionChanged_1">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="#FFDAEBFF" BorderThickness="1" Margin="5" Padding="10">
+                    <Border BorderBrush="#FFDAEBFF" BorderThickness="1" Margin="5" Padding="15" Background="White" CornerRadius="8">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
 
                             <!-- Изображение -->
-                            <Border Width="200" Height="200" Margin="3" ClipToBounds="True" Grid.Column="0">
+                            <Border Grid.Column="0" Width="220" Height="220" Margin="0" ClipToBounds="True" CornerRadius="5" Background="#FFF5F5F5">
                                 <Image Source="{Binding imageProduct}" Stretch="UniformToFill"/>
                             </Border>
 
                             <!-- Информация -->
-                            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0">
-                                <TextBlock Height="auto" Text="{Binding name}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock TextWrapping="Wrap" Height="auto" Margin="0,5,0,5">
-                                    <Run Text="Тип продукции: "/>
-                                    <Run Text="{Binding type_products.name}"/>
+                            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0">
+                                <TextBlock Text="{Binding name}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" TextWrapping="Wrap"/>
+                                <TextBlock Margin="0,3" FontSize="14">
+                            <Run Text="Тип продукции: " FontWeight="SemiBold" Foreground="#FF5B9BD5"/>
+                            <Run Text="{Binding type_products.name}"/>
                                 </TextBlock>
-                                <TextBlock TextWrapping="Wrap" Height="auto" Margin="0,5,0,5">
-                                    <Run Text="Цена: "/>
-                                    <Run Text="{Binding price}"/>
-                                    <Run Text=" руб."/>
+                                <TextBlock Margin="0,3" FontSize="14">
+                            <Run Text="Цена: " FontWeight="SemiBold" Foreground="#FF5B9BD5"/>
+                            <Run Text="{Binding price}"/>
+                            <Run Text=" руб."/>
                                 </TextBlock>
-                                <TextBlock TextWrapping="Wrap" Height="auto" Margin="0,5,0,5">
-                                    <Run Text="Материал: "/>
-                                    <Run Text="{Binding materials.name}"/>
+                                <TextBlock Margin="0,3" FontSize="14">
+                            <Run Text="Материал: " FontWeight="SemiBold" Foreground="#FF5B9BD5"/>
+                            <Run Text="{Binding materials.name}"/>
                                 </TextBlock>
                             </StackPanel>
 
-                            <!-- Кнопка Корзина справа -->
+                            <!-- Кнопка Корзина по центру вертикально -->
                             <Button Grid.Column="2" 
-                                    Width="40" 
-                                    Height="40" 
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent" 
-                                    BorderThickness="0"
-                                    Click="ButtonCart_Click"
-                                    Tag="{Binding}"
-                                    ToolTip="Добавить в корзину">
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Grid Background="Transparent">
-                                            <Path Data="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" 
-                                                  Fill="Black" 
-                                                  Stretch="Uniform"/>
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Button.Template>
+                            Width="50" 
+                            Height="50" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="#FF5B9BD5"
+                            BorderThickness="0"
+                            Click="ButtonCart_Click"
+                            Tag="{Binding}"
+                            ToolTip="Добавить в корзину"
+                            Cursor="Hand">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" 
+                                                    CornerRadius="8">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FF2E75B6"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Path Data="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" 
+                              Fill="White" 
+                              Stretch="Uniform"
+                              Width="24"
+                              Height="24"/>
                             </Button>
                         </Grid>
                     </Border>
@@ -105,8 +121,10 @@
         <Grid Grid.Row="2" Background="#FFF5F5F5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="180"/>
-                <ColumnDefinition Width="144.71"/>
+                <ColumnDefinition Width="121.87"/>
+                <ColumnDefinition Width="58.13"/>
+                <ColumnDefinition Width="45.052"/>
+                <ColumnDefinition Width="99.658"/>
                 <ColumnDefinition Width="35.29"/>
                 <ColumnDefinition Width="180"/>
             </Grid.ColumnDefinitions>
@@ -116,22 +134,21 @@
                        Grid.Column="0" 
                        Text="Найдено 0 продукции" 
                        VerticalAlignment="Top" 
-                       Margin="30,-6,10,0"
+                       Margin="30,-2,10,0"
                        FontSize="14"/>
 
             <!-- Кнопка 🧙 Помощник (ЯРКАЯ И ЗАМЕТНАЯ!) -->
             <Button Grid.Column="1" 
                     Content="🧙 Помощник ИИ" 
                     Height="45" 
-                    Margin="5,-43,5,24"
+                    Margin="0,-26,10,7"
                     Background="#FF5B9BD5"
                     Foreground="White"
                     FontSize="14"
-                    FontWeight="Bold"
                     BorderBrush="#FF2E75B6"
                     BorderThickness="2"
                     Click="ButtonHelper_Click"
-                    Cursor="Hand">
+                    Cursor="Hand" Grid.ColumnSpan="2">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Template">
@@ -158,18 +175,17 @@
 
             <!-- Кнопка Корзина -->
             <Button x:Name="btnOrder" 
-                    Grid.Column="2" 
+                    Grid.Column="3" 
                     Content="🛒 Корзина" 
                     Height="45" 
-                    Margin="5,-43,5,24"
+                    Margin="0,-26,10,7"
                     Background="#FFDAEBFF"
                     Foreground="Black"
                     FontSize="14"
-                    FontWeight="SemiBold"
                     BorderBrush="#FF5B9BD5"
                     BorderThickness="1"
                     Click="Button_Click_1"
-                    Cursor="Hand" Grid.ColumnSpan="2">
+                    Cursor="Hand" Grid.ColumnSpan="3">
                 <Button.ToolTip>
                     <ToolTip x:Name="ttCartCount" Content="0 товаров в корзине"/>
                 </Button.ToolTip>
@@ -198,14 +214,13 @@
             </Button>
 
             <!-- Кнопка Добавить -->
-            <Button Grid.Column="4" 
+            <Button Grid.Column="6" 
                     Content="➕ Добавить" 
                     Height="45" 
-                    Margin="6,-42,4,23"
+                    Margin="0,-26,10,7"
                     Background="#FFDAEBFF"
                     Foreground="Black"
                     FontSize="14"
-                    FontWeight="SemiBold"
                     BorderBrush="#FF5B9BD5"
                     BorderThickness="1"
                     Click="Button_Click"
@@ -236,15 +251,5 @@
         </Grid>
 
         <!-- Декоративный цветок -->
-        <Image Margin="692,11,25,286" Source="/Images/цветок-Photoroom.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-122.193"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
     </Grid>
 </Page>

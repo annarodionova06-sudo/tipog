@@ -24,7 +24,7 @@ namespace tipog.Pages
 
         private void UpdateCart()
         {
-            orderItems = AppConnect.Model1.orders.Where(c => c.id_user == 1).ToList();
+            orderItems = AppConnect.Model1.orders.Where(c => c.id_user == AppConnect.id_user).ToList();
             ListCart.ItemsSource = orderItems;
 
             decimal total = 0;
@@ -35,7 +35,6 @@ namespace tipog.Pages
 
                 if (product != null)
                 {
-                    // Теперь всё работает без преобразований!
                     decimal price = product.price ?? 0;
                     int qty = item.quantity ?? 0;
                     total += price * qty;
@@ -52,7 +51,6 @@ namespace tipog.Pages
 
             if (cartItem != null)
             {
-                // ИСПРАВЛЕНО: добавили ?? 0
                 cartItem.quantity = (cartItem.quantity ?? 0) + 1;
                 AppConnect.Model1.SaveChanges();
                 UpdateCart();
@@ -64,7 +62,6 @@ namespace tipog.Pages
             var button = sender as Button;
             var cartItem = button.Tag as orders;
 
-            // ИСПРАВЛЕНО: добавили ?? 0
             if (cartItem != null && (cartItem.quantity ?? 0) > 1)
             {
                 cartItem.quantity = cartItem.quantity - 1;

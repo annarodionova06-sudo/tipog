@@ -52,9 +52,7 @@ namespace tipog.Pages
             try
             {
                 // Считаем общее количество товаров в корзине
-                var cartCount = AppConnect.Model1.orders
-                    .Where(c => c.id_user == 1)  // TODO: заменить на AppConnect.id_user
-                    .Sum(c => (int?)c.quantity) ?? 0;
+                var cartCount = AppConnect.Model1.orders.Where(c => c.id_user == AppConnect.id_user).Sum(c => (int?)c.quantity) ?? 0;
 
                 // Обновляем ToolTip
                 if (cartCount > 0)
@@ -147,18 +145,6 @@ namespace tipog.Pages
             AppDate.AppFrame.FrameMain.Navigate(new Pages.PageOrder());
         }
 
-        // Кнопка СЕРДЕЧКО (добавить в избранное)
-        private void ButtonFavorite_Click(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            var selectedProduct = button.Tag as products;
-
-            if (selectedProduct != null)
-            {
-                MessageBox.Show($"\"{selectedProduct.name}\" добавлено в избранное!");
-                // TODO: Добавить в таблицу favorites
-            }
-        }
 
         // Кнопка КОРЗИНА у товара (добавить в корзину)
         private void ButtonCart_Click(object sender, RoutedEventArgs e)
@@ -168,9 +154,8 @@ namespace tipog.Pages
 
             if (selectedProduct != null)
             {
-                // Проверяем, есть ли уже в корзине
-                var existingCart = AppConnect.Model1.orders
-                    .FirstOrDefault(c => c.id_product == selectedProduct.id_product && c.id_user == 1);
+
+                var existingCart = AppConnect.Model1.orders.FirstOrDefault(c => c.id_product == selectedProduct.id_product && c.id_user == AppConnect.id_user);
 
                 if (existingCart != null)
                 {
@@ -186,21 +171,19 @@ namespace tipog.Pages
                     var cartItem = new orders
                     {
                         id_product = selectedProduct.id_product,
-                        id_user = 1,
+                        id_user = AppConnect.id_user,
                         quantity = 1,
                         price = selectedProduct.price
                     };
 
                     AppConnect.Model1.orders.Add(cartItem);
+                    AppConnect.Model1.SaveChanges();
                     MessageBox.Show(
                         $"✅ \"{selectedProduct.name}\"\n\nТовар добавлен в корзину!",
                         "Добавлено",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);
                 }
-
-                AppConnect.Model1.SaveChanges();
-
                 // Обновляем счетчик!
                 UpdateCartCount();
             }
