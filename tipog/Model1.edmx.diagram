@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="tipografModel.reviews" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="tipografModel.roles" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="tipografModel.supplies_materials" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tipografModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="tipografModel.type_products" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="tipografModel.users" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
         <AssociationConnector Association="tipografModel.FK_orders_clients" ManuallyRouted="false" />

@@ -38,7 +38,6 @@ namespace tipog
         public DbSet<reviews> reviews { get; set; }
         public DbSet<roles> roles { get; set; }
         public DbSet<supplies_materials> supplies_materials { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<type_products> type_products { get; set; }
         public DbSet<users> users { get; set; }
     }
