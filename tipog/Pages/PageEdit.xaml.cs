@@ -33,7 +33,6 @@ namespace tipog.Pages
                 product = product1;
             }
             DataContext = product;
-
         }
         public void Fill()
         {
@@ -53,11 +52,6 @@ namespace tipog.Pages
             }
             cmbMaterial.SelectedIndex = 0;
         }
-        //public PageEdit(products selectProduct)
-        //{
-        //    InitializeComponent();
-        //}
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -89,7 +83,6 @@ namespace tipog.Pages
             }
             AppFrame.FrameMain.Navigate(new PageTasks());
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             StringBuilder sb = new StringBuilder();
@@ -163,7 +156,6 @@ namespace tipog.Pages
         {
 
         }
-
         private void btnA_Click(object sender, RoutedEventArgs e)
         {
             AppDate.AppFrame.FrameMain.GoBack();

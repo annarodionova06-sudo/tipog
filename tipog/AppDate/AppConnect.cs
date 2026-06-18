@@ -15,10 +15,8 @@ namespace tipog.AppDate
         /// 🚀 ИНИЦИАЛИЗАЦИЯ YANDEXGPT
         /// </summary>
         public static async Task InitYandexGPTAsync()
-        {
-            // Загружаем настройки 
+        { 
             ApplicationData.YandexGPT.LoadSettings();
-            // Проверяем подключение 
             if (await ApplicationData.YandexGPT.TestConnectionAsync())
             {
                 System.Diagnostics.Debug.WriteLine("✅ YandexGPT готов!");

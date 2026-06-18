@@ -30,12 +30,8 @@ namespace tipog.Pages
         {
             try
             {
-                // Получаем состав заказа
-                var orderStructures = AppConnect.Model1.order_structures
-                    .Where(os => os.id_orders == currentOrder.id_order)
-                    .ToList();
+                var orderStructures = AppConnect.Model1.order_structures.Where(os => os.id_orders == currentOrder.id_order).ToList();
 
-                // Формируем текст состава заказа
                 StringBuilder orderDetails = new StringBuilder();
                 foreach (var item in orderStructures)
                 {
@@ -47,7 +43,6 @@ namespace tipog.Pages
                     }
                 }
 
-                // Считаем сумму
                 decimal total = 0;
                 foreach (var item in orderStructures)
                 {
@@ -61,22 +56,13 @@ namespace tipog.Pages
 
                 string baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfqi2d1BoqxBDeitvIk4ePihaGXh4vvQBdg0FQ9F0tDhTECyg/viewform";
 
-                // 🔧 ВАШИ ID ПОЛЕЙ из формы:
-                // entry.361232479 - номер заказа
-                // entry.809578365 - дата
-                // entry.1573292947 - сумма
-                // entry.559659275 - количество товаров
-                // entry.929920653 - оценка
-                // entry.266135167 - состав заказа
-
                 var formUrl = $"{baseUrl}?" +
-           $"entry.361232479={Uri.EscapeDataString(currentOrder.order_number)}&" +
-           $"entry.809578365={Uri.EscapeDataString(currentOrder.order_date?.ToString("yyyy-MM-dd") ?? "")}&" +
-           $"entry.559659275={Uri.EscapeDataString(orderDetails.ToString().Trim())}&" +
-           $"entry.266135167={Uri.EscapeDataString(orderStructures.Sum(s => s.quantity ?? 0).ToString())}&" +
-           $"entry.1573292947={Uri.EscapeDataString(total.ToString("0.00"))}";
+                $"entry.361232479={Uri.EscapeDataString(currentOrder.order_number)}&" +
+                $"entry.809578365={Uri.EscapeDataString(currentOrder.order_date?.ToString("yyyy-MM-dd") ?? "")}&" +
+                $"entry.559659275={Uri.EscapeDataString(orderDetails.ToString().Trim())}&" +
+                $"entry.266135167={Uri.EscapeDataString(orderStructures.Sum(s => s.quantity ?? 0).ToString())}&" +
+                $"entry.1573292947={Uri.EscapeDataString(total.ToString("0.00"))}";
 
-                // Генерация QR-кода
                 var writer = new BarcodeWriter
                 {
                     Format = BarcodeFormat.QR_CODE,
@@ -90,7 +76,6 @@ namespace tipog.Pages
 
                 var result = writer.Write(formUrl);
 
-                // Конвертируем в BitmapImage
                 var bitmap = new BitmapImage();
                 using (var memoryStream = new MemoryStream())
                 {
@@ -105,9 +90,6 @@ namespace tipog.Pages
 
                 imgQr.Source = bitmap;
                 tbOrderNumber.Text = $"Заказ №{currentOrder.order_number}\nОтсканируйте, чтобы оценить качество";
-
-                // Для отладки - показываем URL (можно потом убрать)
-                // MessageBox.Show($"URL:\n{formUrl}");
             }
             catch (Exception ex)
             {

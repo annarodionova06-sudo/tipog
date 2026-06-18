@@ -13,7 +13,6 @@ namespace tipog.Pages
 {
     public partial class PageOrder : Page
     {
-
         List<orders> orderItems;
 
         public PageOrder()
@@ -114,7 +113,6 @@ namespace tipog.Pages
                     int totalCount = 0;
                     foreach (var item in orderItems)
                     {
-                        // ИСПРАВЛЕНО: добавили ?? 0
                         totalCount += (item.quantity ?? 0);
                     }
 
@@ -181,7 +179,6 @@ namespace tipog.Pages
                 return;
             }
 
-            // Диалог сохранения
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*",
@@ -204,13 +201,11 @@ namespace tipog.Pages
 
         private void CreatePDFReceipt(string filePath)
         {
-            // Создаем PDF документ
             Document doc = new Document(PageSize.A4, 40, 40, 30, 30);
             PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
 
             doc.Open();
 
-            // Заголовок
             Font titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
             Paragraph title = new Paragraph("ЧЕК О ЗАКАЗЕ", titleFont);
             title.Alignment = Element.ALIGN_CENTER;
@@ -218,7 +213,6 @@ namespace tipog.Pages
 
             doc.Add(new Paragraph("\n"));
 
-            // Информация о заказе
             var lastOrder = orderItems.OrderByDescending(o => o.id_order).FirstOrDefault();
 
             Font infoFont = FontFactory.GetFont("Arial", 12);
@@ -227,18 +221,15 @@ namespace tipog.Pages
             doc.Add(new Paragraph($"Дата: {lastOrder.order_date}", infoFont));
             doc.Add(new Paragraph("\n"));
 
-            // Таблица с товарами
             PdfPTable table = new PdfPTable(4);
             table.WidthPercentage = 100;
             table.SetWidths(new float[] { 40, 20, 20, 20 });
 
-            // Заголовки таблицы
             table.AddCell("Наименование");
             table.AddCell("Количество");
             table.AddCell("Цена");
             table.AddCell("Сумма");
 
-            // Товары
             decimal total = 0;
             foreach (var item in orderItems)
             {
@@ -262,7 +253,6 @@ namespace tipog.Pages
             doc.Add(table);
             doc.Add(new Paragraph("\n"));
 
-            // Итого
             Font totalFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
             Paragraph totalParagraph = new Paragraph($"ИТОГО: {total.ToString("0.00")} руб.", totalFont);
             totalParagraph.Alignment = Element.ALIGN_RIGHT;

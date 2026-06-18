@@ -26,7 +26,6 @@ namespace tipog.Pages
         {
             InitializeComponent();
 
-            // Заполняем ComboBox фильтра
             ComboFilter.Items.Add("Все типы");
             var types = AppConnect.Model1.type_products.ToList();
             foreach (var type in types)
@@ -35,26 +34,19 @@ namespace tipog.Pages
             }
             ComboFilter.SelectedIndex = 0;
 
-            // Заполняем ComboBox сортировки
             ComboSort.Items.Add("Без сортировки");
             ComboSort.Items.Add("Цена: по возрастанию");
             ComboSort.Items.Add("Цена: по убыванию");
             ComboSort.SelectedIndex = 0;
 
-            // Загружаем продукцию и обновляем счетчик
             FindProduct();
             UpdateCartCount();
         }
-
-        // Метод обновления счетчика корзины
         private void UpdateCartCount()
         {
             try
             {
-                // Считаем общее количество товаров в корзине
                 var cartCount = AppConnect.Model1.orders.Where(c => c.id_user == AppConnect.id_user).Sum(c => (int?)c.quantity) ?? 0;
-
-                // Обновляем ToolTip
                 if (cartCount > 0)
                 {
                     ttCartCount.Content = $"{cartCount} товаров в корзине";
@@ -71,26 +63,19 @@ namespace tipog.Pages
                 ttCartCount.Content = "Ошибка подсчета";
             }
         }
-
         private products[] FindProduct()
         {
             var product = AppConnect.Model1.products.ToList();
             var productall = product;
-
-            // Поиск по названию
             if (!string.IsNullOrWhiteSpace(TextSearch.Text))
             {
                 product = product.Where(x => x.name.ToLower().Contains(TextSearch.Text.ToLower())).ToList();
             }
-
-            // Фильтрация по типу продукции
             if (ComboFilter.SelectedIndex > 0)
             {
                 string selectedType = ComboFilter.SelectedItem.ToString();
                 product = product.Where(x => x.type_products.name == selectedType).ToList();
             }
-
-            // Сортировка по цене
             if (ComboSort.SelectedIndex > 0)
             {
                 switch (ComboSort.SelectedIndex)
@@ -104,7 +89,6 @@ namespace tipog.Pages
                 }
             }
 
-            // Обновляем счетчик
             if (product.Count > 0)
             {
                 tbCounter.Text = "Найдено " + product.Count + " из " + productall.Count;
@@ -113,7 +97,6 @@ namespace tipog.Pages
             {
                 tbCounter.Text = "Не найдено";
             }
-
             ListProducts.ItemsSource = product;
             return product.ToArray();
         }
@@ -133,20 +116,16 @@ namespace tipog.Pages
             FindProduct();
         }
 
-        // Кнопка ДОБАВИТЬ (новая продукция)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AppDate.AppFrame.FrameMain.Navigate(new Pages.PageEdit(null));
         }
 
-        // Кнопка КОРЗИНА (переход на страницу корзины)
         private void ButtonCartPage_Click(object sender, RoutedEventArgs e)
         {
             AppDate.AppFrame.FrameMain.Navigate(new Pages.PageOrder());
         }
 
-
-        // Кнопка КОРЗИНА у товара (добавить в корзину)
         private void ButtonCart_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -184,7 +163,6 @@ namespace tipog.Pages
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);
                 }
-                // Обновляем счетчик!
                 UpdateCartCount();
             }
         }
