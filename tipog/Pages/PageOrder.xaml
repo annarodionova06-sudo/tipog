@@ -23,7 +23,6 @@
             <TextBlock Text="🛒 Корзина" 
                        Foreground="White" 
                        FontSize="24"
-                       FontWeight="Bold"
                        HorizontalAlignment="Center"/>
         </Border>
 
@@ -41,7 +40,7 @@
 
                             <!-- Изображение -->
                             <Border Grid.Column="0" Width="150" Height="150" Margin="10" ClipToBounds="True" CornerRadius="5" Background="#FFF5F5F5">
-                                <Image Source="{Binding imageProduct, TargetNullValue='/Images/загрузка.png'}" Stretch="UniformToFill"/>
+                                <Image Source="{Binding products.imageProduct, TargetNullValue='/Images/загрузка.png'}" Stretch="UniformToFill"/>
                             </Border>
 
                             <!-- Информация о продукте -->
